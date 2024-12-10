@@ -15,7 +15,7 @@ public class PersonaDAOjdbc  implements PersonaDAO{
 
 	@Override
 	public boolean existePersona(Persona persona) {
-		String sql = "SELECT * FROM PERSONA WHERE ID_PERSONA=\""+persona.getId()+"\"";
+		String sql = "SELECT * FROM PERSONA WHERE ID =\""+persona.getId()+"\"";
 		Connection con = null;
 		try {
         	con = MyConnection.getCon();
@@ -26,7 +26,7 @@ public class PersonaDAOjdbc  implements PersonaDAO{
           		sent.close();
           		return false;
         	}
-            
+            System.out.println(sql);
             String nombre = resul.getString("NOMBRES");
           	String apellido = resul.getString("APELLIDOS");
           	persona.setData(nombre, apellido);

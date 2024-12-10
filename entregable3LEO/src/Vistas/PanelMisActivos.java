@@ -13,11 +13,10 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import appDAO.ActivoDAOjdbc;
-import appDAO.FactoryDAO;
-import appDAO.MonedaDAOjdbc;
 import appModels.Activo;
 import appModels.Moneda;
+import appModels.Usuario;
+import controladores.Controlador;
 
 public class PanelMisActivos extends JPanel {
 	private List<JButton> btnList;
@@ -27,12 +26,13 @@ public class PanelMisActivos extends JPanel {
     private JButton btnGenerarDatos;
     private JButton btnExportarCSV;
     private JTable tablaCriptos;
+    private JLabel lblNombreUsuario;
     public PanelMisActivos() {
         btnList = new ArrayList<JButton>(15);
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        // Colores personalizados
+     // Colores personalizados
         Color colorCeleste = new Color(92, 195, 242);
         Color colorRojo = new Color(255, 69, 58);
         
@@ -42,11 +42,13 @@ public class PanelMisActivos extends JPanel {
         JLabel lblLogoUsuario = new JLabel(iconoPerfil); // Logo usuario
     
         // Etiqueta del nombre
-        JLabel lblNombreUsuario = new JLabel("Nombre Apellido");
+        
+        lblNombreUsuario = new JLabel("Nombre y apellido");
         lblNombreUsuario.setFont(fuenteM);
     
         // Botón de cerrar sesión
         JButton btnCerrarSesion = new JButton("Cerrar sesión");
+        btnCerrarSesion.setActionCommand("CERRAR_SESION");
         btnCerrarSesion.setBackground(colorCeleste);
         btnCerrarSesion.setForeground(Color.WHITE);
     
@@ -65,6 +67,9 @@ public class PanelMisActivos extends JPanel {
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.SOUTH;
         this.add(btnCerrarSesion, gbc);
+      
+    
+        
 
         // Botón Generar Datos de Prueba
         btnGenerarDatos = new JButton("Generar Datos de Prueba");
@@ -128,8 +133,9 @@ public class PanelMisActivos extends JPanel {
         
         // Botones inferiores
         JButton btnMisOperaciones = new JButton("Mis Operaciones");
+        btnMisOperaciones.setActionCommand("MIS_OPERACIONES");
         JButton btnCotizaciones = new JButton("Cotizaciones");
-
+        btnCotizaciones.setActionCommand("COTIZACIONES");
         // Crear iconos redimensionados
         ImageIcon iconoOperaciones = new ImageIcon(new ImageIcon("Logos/misOperaciones.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
         ImageIcon iconoCotizaciones = new ImageIcon(new ImageIcon("Logos/cotizaciones.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
@@ -170,17 +176,7 @@ public class PanelMisActivos extends JPanel {
     	return this.btnList;
     }
 
-    // Métodos específicos para cada acción
-//    public void generarDatosDePrueba() {
-//        // Simulando la lógica para generar los datos de prueba
-//    	System.out.println("Generando datos de prueba...");
-//        // Llamamos a la función para actualizar la tabla
-//        if (actualizarTablaCriptos()) {
-//            mostrarMensaje("Generación de datos de prueba exitosa.", "Éxito");
-//        } else {
-//            mostrarMensaje("Hubo un error al generar los datos de prueba.", "Error");
-//        }
-//    }
+   
 
     public void exportarComoCSV() {
         // Simulando la lógica para exportar los datos
@@ -238,10 +234,14 @@ public class PanelMisActivos extends JPanel {
         // Revalidamos para asegurarnos de que la tabla se actualiza correctamente
         tablaCriptos.revalidate();
         return true;
-        
-//        tablaCriptos.setModel(modelo);  // Actualizamos la tabla con el nuevo modelo
-//        tablaCriptos.revalidate();  // Revalidamos para asegurarnos de que la tabla se actualiza correctamente
     }
+   
+	public void setUsuario(Usuario usuario) {
+		System.out.println(usuario.getPersona().getNombre() +" "+ usuario.getPersona().getApellido()); 
+		lblNombreUsuario.setText(usuario.getPersona().getNombre() +" "+ usuario.getPersona().getApellido());
+	}
+    
+   
 }
 
  

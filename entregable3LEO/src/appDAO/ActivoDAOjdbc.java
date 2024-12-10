@@ -28,7 +28,7 @@ public class ActivoDAOjdbc implements ActivoDAO{
             while(resul.next()) {
             	int id_moneda= resul.getInt("ID_MONEDA");
               	double cantidad = resul.getDouble("CANTIDAD");
-              	Activo activo = new Activo(new Fiat(id_moneda), cantidad);
+              	Activo activo = new Activo(new Cripto(id_moneda), cantidad);
               	lista.add(activo);
               }
             resul.close();

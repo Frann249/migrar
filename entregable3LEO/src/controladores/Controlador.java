@@ -43,6 +43,10 @@ public class Controlador {
 		for(JButton botonAct : buttonsList) {
 			botonAct.addActionListener(new ListenerLogin());
 		}
+		buttonsList = vista.getActivos().getButtons();
+		for(JButton botonAct : buttonsList) {
+			botonAct.addActionListener(new ListenerMisActivos());
+		}
 		vista.mostrarPanel("LOGIN");
 		vista.setVisible(true);
 	}
@@ -63,12 +67,24 @@ public class Controlador {
 	}
 
 
+	public Usuario getUserLogeado() {
+		return userLogeado;
+	}
+
+
+	public void setUserLogeado(Usuario userLogeado) {
+		this.userLogeado = userLogeado;
+	}
+
+
 	class ListenerCotizacion implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
-			
+			if (command.equals("VOLVER")) {
+				vista.mostrarPanel("ACTIVOS");
+			}
 			if (command.contains("SWAP")) {
 	            System.out.println("Esta función no está disponible.");
 
@@ -97,7 +113,7 @@ public class Controlador {
 	        } 
 			else {
 				Cripto cripto = (Cripto) modelo.obtenerMoneda(command);
-				vista.getCompra().actualizarValores(cripto, modelo.listarActivosTipo(modelo.FIAT, userLogeado.getId()));;
+				vista.getCompra().actualizarValores(cripto, modelo.listarActivosTipo(modelo.FIAT, getUserLogeado().getId()));;
 				vista.mostrarPanel("COMPRAR");
 			}
 		}
@@ -118,6 +134,8 @@ public class Controlador {
 				vista.getCotizaciones().actualizarPrecios(modelo.listarMonedasTipo(modelo.CRIPTO));
 				vista.mostrarPanel("COTIZACION");
 			}
+			
+			
 		}
 		
 	}
@@ -141,8 +159,8 @@ public class Controlador {
 					registro.yaExisteUsuario();
 					return;
 				}
-				userLogeado = newUser;
-				modelo.crearActivosUsuario(userLogeado.getId());
+				setUserLogeado(newUser);
+				modelo.crearActivosUsuario(getUserLogeado().getId());
 				vista.mostrarPanel("LOGIN");
 				vista.getLogin().notificar(vista.getLogin().REGISTRO_EXITOSO);
 			}
@@ -170,8 +188,9 @@ public class Controlador {
 					return;
 				}
 				if(user.getPassword().equals(login.getPassword())) {
-					userLogeado = user;
-					vista.getActivos().actualizarTablaCriptos(modelo.listarActivos(userLogeado.getId()));
+					setUserLogeado(user);
+					vista.getActivos().actualizarTablaCriptos(modelo.listarActivos(getUserLogeado().getId()));
+					vista.getActivos().setUsuario(userLogeado);
 					vista.mostrarPanel("ACTIVOS");
 					return;
 				}
@@ -184,5 +203,30 @@ public class Controlador {
 			}
 		}
 	}
+	// Listener específico para el panel "Mis Activos"
+    class ListenerMisActivos implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
+            if (command.equals("CERRAR_SESION")) {
+            	vista.mostrarPanel("LOGIN");
+            }
+            if (command.equals("COTIZACIONES")) {
+            	vista.mostrarPanel("COTIZACION");
+            }
+//            if (command.equals("MIS_OPERACIONES")) {
+//            	vista.mostrarPanel(MIS);
+//            }
+//            if (command.equals("GENERAR_DATOS")) {
+//                // Lógica para generar datos de prueba
+//                vista.getMisActivos().generarDatosDePrueba();
+//            }
+
+//            if (command.equals("EXPORTAR_CSV")) {
+//                // Lógica para exportar los datos como CSV
+//                vista.getMisActivos().exportarComoCSV();
+//            }
+        }
+    }
 	
 }

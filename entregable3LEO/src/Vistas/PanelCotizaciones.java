@@ -11,6 +11,8 @@ import java.awt.*;
 
 public class PanelCotizaciones extends JPanel {
     private final Color naranjaOscuro = new Color(255, 95, 0);
+    private final Color colorCeleste= new Color(92,195,242);
+    private final Font fuenteField= new Font("Arial", Font.ITALIC, 15);
     private List<JButton> btnList;
     private List<JLabel> precios;
     private boolean configurado = false;
@@ -110,6 +112,25 @@ public class PanelCotizaciones extends JPanel {
         btnList.add(btnComprar);
         btnList.add(btnSwap);
         }
+        
+        
+        JButton btnVolver = new JButton("Volver");
+		btnVolver.setActionCommand("VOLVER");
+		Border bordeInt = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border bordeExt = BorderFactory.createLineBorder(Color.DARK_GRAY, 2);
+		btnVolver.setBorder(BorderFactory.createCompoundBorder(bordeExt, bordeInt));
+		btnVolver.setBackground(colorCeleste);
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(fuenteField);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.anchor = gbc.WEST;
+		this.add(btnVolver, gbc);
+		btnList.add(btnVolver);
+        
+        
         this.setBorder(BorderFactory.createEmptyBorder(20, 10, 0, 10));
         this.setBackground(new Color(248, 255, 243));
         this.setVisible(true);

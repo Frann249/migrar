@@ -47,7 +47,7 @@ public class PanelCompra extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = gbc.WEST;
         gbc.fill = gbc.NONE;
-
+         
 		JLabel textStock= new JLabel("Stock Disponible: ");
 		textStock.setFont(fuenteTxt);
 		gbc.gridx = 0; 
@@ -108,9 +108,9 @@ public class PanelCompra extends JPanel{
         
         JButton btnConvertir = new JButton("Convertir");
         btnConvertir.setActionCommand("CONVERTIR");
-        Border bordeInt = BorderFactory.createEmptyBorder(7, 7, 7, 7);
-        Border bordeExt = BorderFactory.createLineBorder(Color.DARK_GRAY, 2);
-        btnConvertir.setBorder(BorderFactory.createCompoundBorder(bordeExt, bordeInt));
+        Border bordeInt1 = BorderFactory.createEmptyBorder(7, 7, 7, 7);
+        Border bordeExt1 = BorderFactory.createLineBorder(Color.DARK_GRAY, 2);
+        btnConvertir.setBorder(BorderFactory.createCompoundBorder(bordeExt1, bordeInt1));
         btnConvertir.setBackground(colorVerde);
         btnConvertir.setForeground(Color.WHITE);
         btnConvertir.setFont(fuenteBtn);
@@ -137,7 +137,7 @@ public class PanelCompra extends JPanel{
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setActionCommand("CANCELAR");
-		btnCancelar.setBorder(BorderFactory.createCompoundBorder(bordeExt, bordeInt));
+		btnCancelar.setBorder(BorderFactory.createCompoundBorder(bordeExt1, bordeInt1));
 		btnCancelar.setBackground(colorCeleste);
 		btnCancelar.setForeground(Color.WHITE);
 		btnCancelar.setFont(fuenteBtn);
@@ -151,7 +151,7 @@ public class PanelCompra extends JPanel{
 	        
 		JButton btnRealizar = new JButton("Realizar Compra");
 		btnRealizar.setActionCommand("REALIZAR");
-        btnRealizar.setBorder(BorderFactory.createCompoundBorder(bordeExt, bordeInt));
+        btnRealizar.setBorder(BorderFactory.createCompoundBorder(bordeExt1, bordeInt1));
         btnRealizar.setBackground(colorCeleste);
         btnRealizar.setForeground(Color.WHITE);
 		btnRealizar.setFont(fuenteBtn);

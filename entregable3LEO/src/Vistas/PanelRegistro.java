@@ -24,8 +24,8 @@ public class PanelRegistro extends JPanel{
 	private final Color colorCeleste= new Color(92,195,242); 
 	private final Font fuenteTxt = new Font("Arial", Font.BOLD, 24);
 	private final Font fuenteField= new Font("Arial", Font.ITALIC, 15);
-	private JLabel labelAviso;
-	private List<JButton> btnList;
+			private JLabel labelAviso;
+			private List<JButton> btnList;
 	
 	private List<JTextField> camposTexto;
 	private JCheckBox checkTYC;

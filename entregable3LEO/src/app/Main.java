@@ -18,6 +18,6 @@ public class Main {
 	            Timer timer;
 	            timer = new Timer();
 	            ActualizarDBTask actualizarDB = new ActualizarDBTask(modelo);
-	            timer.schedule(actualizarDB, 10, 15000);
+//	            timer.schedule(actualizarDB, 10, 15000);
 	 }
 }

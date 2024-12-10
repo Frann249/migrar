@@ -18,12 +18,12 @@ public class Cripto extends Moneda {
 	public Cripto(String nombre_icono, String nombre, String nomenclatura){
 		super(0,nombre_icono, nombre, nomenclatura, 0);
 		this.volatililidad = 0;
-		this.stock=0;
+		this.stock = 0;
 	}
 	public Cripto(int id, String nombre_icono, String nombre, String nomenclatura, double valor_Dolar, double volatililidad, double stock){
 		super(id,nombre_icono, nombre, nomenclatura, valor_Dolar);
 		this.volatililidad = volatililidad;
-		this.stock=stock;
+		this.stock= stock;
 	}
 	/**
 	 * @return the volatibilidad

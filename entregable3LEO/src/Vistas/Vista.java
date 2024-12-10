@@ -6,7 +6,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import appDAO.FactoryDAO;
+
 
 public class Vista extends JFrame {
     private JPanel mainPanel; // Panel principal que contendrá los subpaneles
@@ -66,7 +66,7 @@ public class Vista extends JFrame {
     		this.setTitle("Billetera Virtual - Comprar Cripto");
     	}
     	if(nombrePanel.equals("ACTIVOS")) {
-    		this.setSize(800,1000);
+    		this.setSize(800,950);
     		this.setTitle("Billetera Virtual - Tus Activos");
     	}    	
         cardLayout.show(mainPanel, nombrePanel);
